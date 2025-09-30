@@ -248,6 +248,7 @@ init_state :: proc(desc: ^SpriteBatcherDesc) -> bool {
 
 free_state :: proc() {
     gl.DeleteProgram(state.sprite_shader)
+    gl.DeleteProgram(state.sprite_instanced_shader)
     gl.DeleteProgram(state.present_shader)
     destroy_mesh(&state.quad_mesh)
     destroy_framebuffer(&state.main_frame)

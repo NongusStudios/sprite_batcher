@@ -78,13 +78,14 @@ main :: proc() {
     if !success {
         return
     }
+    defer destroy_sprite_atlas(&atlas)
 
     SPRITE_COUNT :: 100000
-    sprites := make([]Sprite, SPRITE_COUNT)
-    dirs := make([]vec2, SPRITE_COUNT)
+    sprites := make([]Sprite, SPRITE_COUNT); defer delete(sprites)
+    dirs := make([]vec2, SPRITE_COUNT); defer delete(dirs)
     
     for &dir in dirs {
-        dir = vec2{1.0, 1.0}
+        dir = vec2{-1.0 if rand.int_max(1) == 0 else 1.0, -1.0 if rand.int_max(1) == 0 else 1.0}
     }
 
     gen_sprite_data(sprites[:])
@@ -98,10 +99,10 @@ main :: proc() {
         dt := f32(now - last)
         last = now
 
-        // Display FPS
+        // Display FPS and sprites
         since_fps += dt
         if since_fps >= 0.5 {
-            fmt.printf("\rFPS: %f", 1.0 / dt)
+            fmt.printf("\rSprites: %i | FPS: %f", SPRITE_COUNT, 1.0 / dt)
             since_fps = 0.0
         }
 

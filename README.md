@@ -1,5 +1,5 @@
 # Sprite Batcher
-
+Moved to [Codeberg](https://codeberg.org/nongus_studios/voxel_renderer) \
 Simple performant OpenGL sprite batcher written in odin, for drawing many sprites. I made this as a generic starting point for my OpenGL projects.
 
 ## Usage
